@@ -1,0 +1,16 @@
+include ':libs:base'
+include ':libs:common'
+include ':libs:rift'
+
+include ':apps:ex1'
+
+Set moduleList = new HashSet()
+rootProject.children.each { outerDir ->
+    outerDir.children.each { innerDir ->
+        innerDir.name = "$outerDir.name-$innerDir.name"
+    }
+    moduleList.addAll(outerDir.children)
+}
+rootProject.children.clear()
+rootProject.children.addAll(moduleList)
+
