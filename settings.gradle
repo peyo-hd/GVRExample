@@ -3,6 +3,7 @@ include ':libs:common'
 include ':libs:rift'
 
 include ':apps:ex1'
+include ':apps:ex2'
 
 Set moduleList = new HashSet()
 rootProject.children.each { outerDir ->
