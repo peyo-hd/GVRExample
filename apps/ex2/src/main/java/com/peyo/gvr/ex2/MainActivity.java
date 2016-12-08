@@ -160,6 +160,13 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+        System.exit(0);
+    }
+
+    @Override
     public void onFinishFrame(Viewport viewport) {
 
     }

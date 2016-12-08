@@ -90,6 +90,14 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
         GLES20.glDeleteProgram(mProgram);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+        System.exit(0);
+    }
+
     @Override
     public void onFinishFrame(Viewport viewport) {
 

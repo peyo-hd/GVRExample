@@ -149,7 +149,10 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
     @Override
     protected void onPause() {
         super.onPause();
-        releaseMediaPlayer();
+        if (mPlayerStarted) {
+            finish();
+            System.exit(0);
+        }
     }
 
     @Override
