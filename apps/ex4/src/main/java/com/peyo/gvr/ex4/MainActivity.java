@@ -38,15 +38,18 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
     private boolean mPlayerStarted = false;
     private int textureId;
 
+
+    GvrView mGvrView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
 
         setContentView(R.layout.common_ui);
-        GvrView gvrView = (GvrView) findViewById(R.id.cardboard_view);
-        gvrView.setRenderer(this);
-        setGvrView(gvrView);
+            setContentView(R.layout.common_ui);
+            mGvrView = (GvrView) findViewById(R.id.cardboard_view);
+            mGvrView.setRenderer(this);
 
         camera = new float[16];
 
@@ -230,17 +233,21 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
     public void onFinishFrame(Viewport viewport) {
     }
 
+    boolean mFirstPause = true;
     @Override
     protected void onPause() {
         super.onPause();
-        releaseMediaPlayer();
         if (mVrAppLaunched) {
+            releaseMediaPlayer();
             mVrAppLaunched = false;
         } else {
-            if (mPlayerStarted) {
+            if (!mFirstPause) {
                 finish();
                 System.exit(0);
+            } else {
+                setGvrView(mGvrView);
             }
+            mFirstPause =false;
         }
     }
 

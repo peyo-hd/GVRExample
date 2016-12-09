@@ -18,8 +18,8 @@ android {
 }
 
 dependencies {
-    compile project(':libs-base')
-    compile project(':libs-common')
-    compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-7'
-    //compile project(':libs-rift')
+    //compile project(':libs-base')
+    //compile project(':libs-common')
+    //compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-7'
+    compile project(':libs-rift')
 }

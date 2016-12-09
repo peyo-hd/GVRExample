@@ -3,6 +3,7 @@ package com.peyo.gvr.ex3;
 import javax.microedition.khronos.egl.EGLConfig;
 
 import android.Manifest;
+import android.app.Activity;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -31,15 +32,16 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
     private boolean mPlayerStarted = false;
     private int textureId;
 
-	@Override
+    GvrView mGvrView;
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
 
         setContentView(R.layout.common_ui);
-        GvrView gvrView = (GvrView) findViewById(R.id.cardboard_view);
-        gvrView.setRenderer(this);
-        setGvrView(gvrView);
+        mGvrView = (GvrView) findViewById(R.id.cardboard_view);
+        mGvrView.setRenderer(this);
 
         camera = new float[16];
     }
@@ -146,13 +148,17 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
     public void onFinishFrame(Viewport viewport) {
     }
 
+    boolean mFirstPause = true;
     @Override
     protected void onPause() {
         super.onPause();
-        if (mPlayerStarted) {
+        if (!mFirstPause) {
             finish();
             System.exit(0);
+        } else {
+            setGvrView(mGvrView);
         }
+        mFirstPause =false;
     }
 
     @Override
