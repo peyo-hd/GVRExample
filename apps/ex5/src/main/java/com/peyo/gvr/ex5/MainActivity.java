@@ -1,4 +1,4 @@
-package com.peyo.gvr.ex3;
+package com.peyo.gvr.ex5;
 
 import javax.microedition.khronos.egl.EGLConfig;
 
@@ -83,7 +83,7 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
 
     private void startMediaPlayer() {
         if (mSurface != null && !mPlayerStarted) {
-        mPlayer = MediaPlayer.create(this, Uri.parse(Environment.getExternalStorageDirectory().getPath()+ "/Movies/vr.mp4"));
+        mPlayer = MediaPlayer.create(this, Uri.parse(Environment.getExternalStorageDirectory().getPath()+ "/Movies/vr2.mp4"));
             mPlayer.setLooping(true);
             mPlayer.setSurface(mSurface);
             mPlayer.start();

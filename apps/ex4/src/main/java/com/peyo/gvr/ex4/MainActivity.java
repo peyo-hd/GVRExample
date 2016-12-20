@@ -10,9 +10,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.net.Uri;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.KeyEvent;
 import android.view.Surface;
 
@@ -96,7 +98,7 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
                 name = new ComponentName("com.peyo.gvr.ex2","com.peyo.gvr.ex2.MainActivity");
                 break;
             case 2:
-                name = new ComponentName("com.peyo.gvr.ex1","com.peyo.gvr.ex1.MainActivity");
+                name = new ComponentName("com.peyo.gvr.ex5","com.peyo.gvr.ex5.MainActivity");
                 break;
             default:
                 return;
@@ -160,7 +162,7 @@ public class MainActivity extends GvrActivity implements GvrView.StereoRenderer 
 
     private void startMediaPlayer() {
         if (mSurface != null && !mPlayerStarted) {
-            mPlayer = MediaPlayer.create(this, R.raw.video);
+            mPlayer = MediaPlayer.create(this, Uri.parse(Environment.getExternalStorageDirectory().getPath()+ "/Movies/movie.mp4"));
             mPlayer.setLooping(true);
             mPlayer.setSurface(mSurface);
             mPlayer.setVolume(0.3f, 0.3f);

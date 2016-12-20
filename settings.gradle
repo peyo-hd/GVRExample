@@ -6,6 +6,7 @@ include ':apps:ex1'
 include ':apps:ex2'
 include ':apps:ex3'
 include ':apps:ex4'
+include ':apps:ex5'
 
 Set moduleList = new HashSet()
 rootProject.children.each { outerDir ->
